@@ -11,7 +11,7 @@ import java.util.Iterator;
 import javax.swing.Timer;
 
 
-public class GameEngine implements KeyListener{
+public class GameEngine implements KeyListener, GameReporter{
 	GamePanel gp;
 		
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
@@ -105,7 +105,7 @@ public class GameEngine implements KeyListener{
 			}
 		}
 		
-		gp.updateGameUI();
+		gp.updateGameUI(this);
 		
 		Rectangle2D.Double vr = v.getRectangle();
 		Rectangle2D.Double er;
@@ -113,6 +113,7 @@ public class GameEngine implements KeyListener{
 		for(Enemy e : enemies){
 			er = e.getRectangle();
 			if(er.intersects(vr)){
+        die();
 				e.hitMe();
 				minus();
 				combo = 0;

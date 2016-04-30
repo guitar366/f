@@ -24,10 +24,15 @@ public class GamePanel extends JPanel {
 		big.setBackground(Color.BLACK);
 	}
 
-	public void updateGameUI(){
+	public void updateGameUI(GameReporter reporter){
 		big.clearRect(0, 0, 400, 600);
 		
 		big.setColor(Color.WHITE);
+		big.drawString(String.format("Score %08d", reporter.getScore()), 260, 20);
+		big.drawString(String.format("Combo : %03d", reporter.getCombo()), 260, 40);
+		big.drawString(String.format("HP : %03d", reporter.getHp()), 150, 20);
+		big.drawString(String.format("Nuclear : %01d", reporter.getNc()), 20, 20);
+		big.drawString(String.format("Life Point : %01d", reporter.getLp()), 20, 40);
 		for(Sprite s : sprites){
 			s.draw(big);
 		}
